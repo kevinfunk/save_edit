@@ -56,10 +56,19 @@ function save_edit_form_alter(&$form, FormStateInterface $form_state) {
         $form['actions']['save_edit']['#dropbutton'] = 'save';
       }
       if ($config->get('hide_default_save')) {
-        $form['actions']['publish']['#access'] = FALSE;
         $form['actions']['unpublish']['#access'] = FALSE;
         $form['actions']['submit']['#access'] = FALSE;
       }
+      if ($config->get('hide_default_publish')) {
+        $form['actions']['publish']['#access'] = FALSE;
+      }
+      if ($config->get('hide_default_preview')) {
+        $form['actions']['preview']['#access'] = FALSE;
+      }
+      if ($config->get('hide_default_delete')) {
+        $form['actions']['delete']['#access'] = FALSE;
+      }
+
     }
   }
 }

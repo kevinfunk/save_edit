@@ -58,12 +58,6 @@ class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('This setting will insert the Save &amp; Edit button into the save dropbutton.'),
       '#default_value' => $config->get('dropbutton'),
     ];
-    $form['hide_default_save'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Hide default Save button'),
-      '#description' => $this->t('This will hide the Save dropbutton.'),
-      '#default_value' => $config->get('hide_default_save'),
-    ];
     $form['unpublish'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Auto Unpublish All Nodes'),
@@ -76,6 +70,31 @@ class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('This will only mark the node as unpublished upon creating a new node. Assuming this is used, on subsequent uses of <strong>Save &amp; Edit</strong> the node will be unpublished already, and NOT affected. You will be required at some point to manually publish the node using the optional <strong>Publish</strong> button, or manually ticking the appropriate checkbox when hitting the default Save button.'),
       '#default_value' => $config->get('unpublish_new_only'),
     ];
+    $form['hide_default_save'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide default Save button'),
+      '#description' => $this->t('This will hide the Save dropbutton.'),
+      '#default_value' => $config->get('hide_default_save'),
+    ];
+
+    $form['hide_default_publish'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide the Publish button'),
+      '#default_value' => $config->get('hide_default_publish'),
+      '#description' => $this->t('This will hide the Publish button.'),
+    );
+    $form['hide_default_preview'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide default Preview button'),
+      '#default_value' => $config->get('hide_default_preview'),
+      '#description' => $this->t('This will hide the Preview button.'),
+    );
+    $form['hide_default_delete'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide default Delete button'),
+      '#default_value' => $config->get('hide_default_delete'),
+      '#description' => $this->t('This will hide the Delete button.'),
+    );
 
     $node_types = NodeType::loadMultiple();
     $keyed_node_types = [];
@@ -104,6 +123,9 @@ class SettingsForm extends ConfigFormBase {
       ->set('button_weight', $form_state->getValue('button_weight'))
       ->set('dropbutton', $form_state->getValue('dropbutton'))
       ->set('hide_default_save', $form_state->getValue('hide_default_save'))
+      ->set('hide_default_publish', $form_state->getValue('hide_default_publish'))
+      ->set('hide_default_preview', $form_state->getValue('hide_default_preview'))
+      ->set('hide_default_delete', $form_state->getValue('hide_default_delete'))
       ->set('unpublish', $form_state->getValue('unpublish'))
       ->set('unpublish_new_only', $form_state->getValue('unpublish_new_only'))
       ->set('node_types', $form_state->getValue('node_types'))
