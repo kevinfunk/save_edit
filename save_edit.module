@@ -56,8 +56,9 @@ function save_edit_form_alter(&$form, FormStateInterface $form_state) {
         $form['actions']['save_edit']['#dropbutton'] = 'save';
       }
       if ($config->get('hide_default_save')) {
-        unset($form['actions']['publish']);
-        unset($form['actions']['unpublish']);
+        $form['actions']['publish']['#access'] = FALSE;
+        $form['actions']['unpublish']['#access'] = FALSE;
+        $form['actions']['submit']['#access'] = FALSE;
       }
     }
   }
