@@ -101,12 +101,13 @@ class SettingsForm extends ConfigFormBase {
     foreach ($node_types as $content_type) {
       $keyed_node_types[$content_type->id()] = $content_type->label();
     }
+    $default_value_node_types = $config->get('node_types');
     $form['node_types'] = [
       '#type' => 'checkboxes',
       '#options' => $keyed_node_types,
       '#title' => $this->t('Node types'),
       '#description' => $this->t('Set the node types you want to display links for.'),
-      '#default_value' => $config->get('node_types'),
+      '#default_value' => isset($default_value_node_types) ? $default_value_node_types : [],
     ];
 
     return parent::buildForm($form, $form_state);
