@@ -38,7 +38,7 @@ function save_edit_form_alter(&$form, FormStateInterface $form_state) {
     $entity = $form_object->getEntity();
     $content_type = $entity->getType();
 
-    $enabled_node_types = $config->get('node_types');
+    $enabled_node_types = !is_null($config->get('node_types')) ? $config->get('node_types') : [];
     if (in_array($content_type, array_values($enabled_node_types), TRUE)) {
       $form['actions']['save_edit'] = [
         '#type' => 'submit',
